@@ -3,37 +3,38 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aplikasi Render Data</title>
+<title>Render Data Modern</title>
 
 <style>
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Arial, sans-serif;
+    font-family:'Poppins',sans-serif;
 }
 
 body{
-    background:linear-gradient(135deg,#dfe9f3,#ffffff);
+    background:linear-gradient(135deg,#667eea,#764ba2);
     min-height:100vh;
-    padding:20px;
-    color:#333;
+    color:#fff;
 }
 
 .container{
-    max-width:1100px;
+    width:95%;
+    max-width:1200px;
     margin:auto;
+    padding:20px;
 }
 
-/* Header */
+/* HEADER */
 header{
-    background:linear-gradient(135deg,#3498db,#6dd5fa);
-    color:white;
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(12px);
     padding:25px;
-    border-radius:15px;
+    border-radius:20px;
     text-align:center;
+    box-shadow:0 8px 25px rgba(0,0,0,.15);
     margin-bottom:20px;
-    box-shadow:0 10px 25px rgba(0,0,0,.12);
 }
 
 header h1{
@@ -45,7 +46,7 @@ header p{
     opacity:.9;
 }
 
-/* Menu */
+/* MENU */
 #menu{
     display:flex;
     gap:12px;
@@ -55,22 +56,22 @@ header p{
 }
 
 #menu li{
-    background:white;
     padding:12px 18px;
-    border-radius:10px;
+    border-radius:12px;
     cursor:pointer;
-    box-shadow:0 5px 12px rgba(0,0,0,.08);
+    background:rgba(255,255,255,.15);
+    backdrop-filter:blur(10px);
     transition:.3s;
 }
 
 #menu li:hover,
 .active{
-    background:#3498db;
-    color:white;
+    background:#fff;
+    color:#333;
     transform:translateY(-3px);
 }
 
-/* Content */
+/* CONTENT */
 .content{
     display:none;
 }
@@ -83,7 +84,7 @@ header p{
 @keyframes fade{
     from{
         opacity:0;
-        transform:translateY(10px);
+        transform:translateY(15px);
     }
     to{
         opacity:1;
@@ -91,79 +92,76 @@ header p{
     }
 }
 
-/* Box */
+/* BOX */
 .box{
-    background:white;
+    background:rgba(255,255,255,.12);
+    backdrop-filter:blur(12px);
     padding:22px;
-    border-radius:15px;
+    border-radius:18px;
+    box-shadow:0 10px 25px rgba(0,0,0,.12);
     margin-bottom:20px;
-    box-shadow:0 8px 20px rgba(0,0,0,.08);
 }
 
 .grid{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
     gap:20px;
 }
 
-/* Form */
+/* FORM */
 input{
     width:100%;
     padding:12px;
+    border:none;
+    border-radius:12px;
     margin:12px 0;
-    border:1px solid #ddd;
-    border-radius:10px;
     outline:none;
 }
 
-input:focus{
-    border-color:#3498db;
-}
-
 button{
-    padding:10px 15px;
+    padding:10px 16px;
     border:none;
-    border-radius:10px;
-    background:#3498db;
-    color:white;
+    border-radius:12px;
     cursor:pointer;
+    background:#fff;
+    color:#333;
+    font-weight:bold;
     transition:.3s;
 }
 
 button:hover{
-    background:#2980b9;
     transform:scale(1.05);
+    background:#f1f1f1;
 }
 
-/* Table */
+/* TABLE */
 table{
     width:100%;
     border-collapse:collapse;
     margin-top:10px;
 }
 
-th{
-    background:#3498db;
-    color:white;
-}
-
 th,td{
     padding:12px;
-    border-bottom:1px solid #eee;
     text-align:left;
+    border-bottom:1px solid rgba(255,255,255,.2);
+}
+
+th{
+    color:#ffeaa7;
 }
 
 tr:hover{
-    background:#f8f9fa;
+    background:rgba(255,255,255,.08);
 }
 
-/* List */
+/* LIST */
 #list li{
     list-style:none;
-    background:#f8f9fa;
     padding:12px;
     margin:8px 0;
-    border-radius:10px;
+    border-radius:12px;
+    background:rgba(255,255,255,.08);
     transition:.3s;
 }
 
@@ -171,26 +169,20 @@ tr:hover{
     transform:translateX(5px);
 }
 
-/* Card */
+/* CARD */
 .card-item{
-    background:linear-gradient(135deg,#ffffff,#f1f7ff);
     padding:15px;
-    border-radius:12px;
+    border-radius:15px;
     margin:10px 0;
-    box-shadow:0 5px 10px rgba(0,0,0,.05);
+    background:rgba(255,255,255,.08);
     transition:.3s;
 }
 
 .card-item:hover{
-    transform:translateY(-4px);
+    transform:translateY(-5px);
 }
 
-/* About */
-.about-list li{
-    margin:8px 0;
-}
-
-/* Responsive */
+/* RESPONSIVE */
 @media(max-width:768px){
     #menu{
         flex-direction:column;
@@ -209,7 +201,7 @@ tr:hover{
 
 <header>
     <h1>Aplikasi Render Data</h1>
-    <p>Tampilan Modern & Lebih Menarik</p>
+    <p>Modern Dashboard Glassmorphism</p>
 </header>
 
 <ul id="menu"></ul>
@@ -217,12 +209,11 @@ tr:hover{
 <!-- HOME -->
 <div id="home" class="content box">
     <h2>Home</h2>
-    <p>Selamat datang di aplikasi render data.</p>
+    <p>Selamat datang di aplikasi render data modern.</p>
 </div>
 
 <!-- DATA -->
 <div id="data" class="content">
-
 <div class="grid">
 
 <div class="box">
@@ -262,7 +253,7 @@ tr:hover{
 <div id="about" class="content box">
     <h2>About</h2>
     <p>Aplikasi ini menggunakan konsep:</p>
-    <ul class="about-list">
+    <ul>
         <li>DRY</li>
         <li>Reuse</li>
         <li>Modular</li>
@@ -274,9 +265,9 @@ tr:hover{
 
 <script>
 let users = [
-    { id:1, nama:"Sari" },
-    { id:2, nama:"Dina" },
-    { id:3, nama:"Tina" }
+    {id:1,nama:"Sari"},
+    {id:2,nama:"Dina"},
+    {id:3,nama:"Tina"}
 ];
 
 const menus = ["home","data","about"];
@@ -285,21 +276,17 @@ function renderMenu(data){
     let html = "";
 
     for(let i=0;i<data.length;i++){
-        html += `
-        <li onclick="showPage('${data[i]}')" id="menu-${data[i]}">
-            ${data[i]}
-        </li>
-        `;
+        html += `<li onclick="showPage('${data[i]}')" id="menu-${data[i]}">${data[i]}</li>`;
     }
 
     document.getElementById("menu").innerHTML = html;
 }
 
 function showPage(page){
-    const contents = document.getElementsByClassName("content");
+    const content = document.getElementsByClassName("content");
 
-    for(let i=0;i<contents.length;i++){
-        contents[i].classList.remove("show");
+    for(let i=0;i<content.length;i++){
+        content[i].classList.remove("show");
     }
 
     document.getElementById(page).classList.add("show");
@@ -325,11 +312,8 @@ function renderTable(data){
         <tr>
             <td>${data[i].id}</td>
             <td>${data[i].nama}</td>
-            <td>
-                <button onclick="hapusData(${data[i].id})">Hapus</button>
-            </td>
-        </tr>
-        `;
+            <td><button onclick="hapusData(${data[i].id})">Hapus</button></td>
+        </tr>`;
     }
 
     document.getElementById("tableBody").innerHTML = html;
@@ -354,8 +338,7 @@ function renderCard(data){
             <strong>${data[i].nama}</strong>
             <br><br>
             <button onclick="hapusData(${data[i].id})">Hapus</button>
-        </div>
-        `;
+        </div>`;
     }
 
     document.getElementById("card").innerHTML = html;
@@ -364,17 +347,17 @@ function renderCard(data){
 function tambahData(){
     const nama = document.getElementById("namaInput").value;
 
-    if(nama === ""){
+    if(nama==""){
         alert("Nama tidak boleh kosong!");
         return;
     }
 
     users.push({
-        id:users.length + 1,
+        id:users.length+1,
         nama:nama
     });
 
-    document.getElementById("namaInput").value = "";
+    document.getElementById("namaInput").value="";
     renderAll();
 }
 
