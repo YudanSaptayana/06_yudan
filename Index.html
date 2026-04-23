@@ -3,42 +3,42 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Render Data Modern</title>
+<title>Dashboard Data User</title>
 
 <style>
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
+    font-family:'Segoe UI',sans-serif;
 }
 
 body{
-    background:linear-gradient(135deg,#667eea,#764ba2);
+    background:linear-gradient(135deg,#5f72ff,#9b23ea);
     min-height:100vh;
     color:#fff;
 }
 
 .container{
-    width:95%;
+    width:92%;
     max-width:1200px;
     margin:auto;
-    padding:20px;
+    padding:25px;
 }
 
-/* HEADER */
+/* Header */
 header{
-    background:rgba(255,255,255,0.15);
-    backdrop-filter:blur(12px);
+    background:rgba(255,255,255,.12);
+    backdrop-filter:blur(14px);
     padding:25px;
-    border-radius:20px;
+    border-radius:18px;
     text-align:center;
-    box-shadow:0 8px 25px rgba(0,0,0,.15);
-    margin-bottom:20px;
+    margin-bottom:22px;
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
 }
 
 header h1{
-    font-size:32px;
+    font-size:30px;
 }
 
 header p{
@@ -46,21 +46,20 @@ header p{
     opacity:.9;
 }
 
-/* MENU */
+/* Menu */
 #menu{
     display:flex;
     gap:12px;
     list-style:none;
-    margin-bottom:20px;
+    margin-bottom:22px;
     flex-wrap:wrap;
 }
 
 #menu li{
-    padding:12px 18px;
+    padding:12px 20px;
     border-radius:12px;
     cursor:pointer;
     background:rgba(255,255,255,.15);
-    backdrop-filter:blur(10px);
     transition:.3s;
 }
 
@@ -71,7 +70,7 @@ header p{
     transform:translateY(-3px);
 }
 
-/* CONTENT */
+/* Content */
 .content{
     display:none;
 }
@@ -84,7 +83,7 @@ header p{
 @keyframes fade{
     from{
         opacity:0;
-        transform:translateY(15px);
+        transform:translateY(12px);
     }
     to{
         opacity:1;
@@ -92,14 +91,14 @@ header p{
     }
 }
 
-/* BOX */
+/* Card Box */
 .box{
     background:rgba(255,255,255,.12);
     backdrop-filter:blur(12px);
     padding:22px;
     border-radius:18px;
-    box-shadow:0 10px 25px rgba(0,0,0,.12);
     margin-bottom:20px;
+    box-shadow:0 10px 20px rgba(0,0,0,.12);
 }
 
 .grid{
@@ -108,16 +107,17 @@ header p{
     gap:20px;
 }
 
-/* FORM */
+/* Input */
 input{
     width:100%;
     padding:12px;
+    margin:12px 0;
     border:none;
     border-radius:12px;
-    margin:12px 0;
     outline:none;
 }
 
+/* Button */
 button{
     padding:10px 16px;
     border:none;
@@ -131,10 +131,9 @@ button{
 
 button:hover{
     transform:scale(1.05);
-    background:#f1f1f1;
 }
 
-/* TABLE */
+/* Table */
 table{
     width:100%;
     border-collapse:collapse;
@@ -143,53 +142,39 @@ table{
 
 th,td{
     padding:12px;
-    text-align:left;
     border-bottom:1px solid rgba(255,255,255,.2);
+    text-align:left;
 }
 
 th{
     color:#ffeaa7;
 }
 
-tr:hover{
-    background:rgba(255,255,255,.08);
-}
-
-/* LIST */
+/* List */
 #list li{
     list-style:none;
+    background:rgba(255,255,255,.08);
     padding:12px;
     margin:8px 0;
     border-radius:12px;
-    background:rgba(255,255,255,.08);
-    transition:.3s;
 }
 
-#list li:hover{
-    transform:translateX(5px);
-}
-
-/* CARD */
+/* Card */
 .card-item{
-    padding:15px;
-    border-radius:15px;
-    margin:10px 0;
     background:rgba(255,255,255,.08);
+    padding:15px;
+    border-radius:14px;
+    margin:10px 0;
     transition:.3s;
 }
 
 .card-item:hover{
-    transform:translateY(-5px);
+    transform:translateY(-4px);
 }
 
-/* RESPONSIVE */
 @media(max-width:768px){
     #menu{
         flex-direction:column;
-    }
-
-    header h1{
-        font-size:24px;
     }
 }
 </style>
@@ -200,30 +185,31 @@ tr:hover{
 <div class="container">
 
 <header>
-    <h1>Aplikasi Render Data</h1>
-    <p>Modern Dashboard Glassmorphism</p>
+    <h1>Dashboard Data User</h1>
+    <p>Aplikasi Data Sederhana Modern</p>
 </header>
 
 <ul id="menu"></ul>
 
 <!-- HOME -->
 <div id="home" class="content box">
-    <h2>Home</h2>
-    <p>Selamat datang di aplikasi render data modern.</p>
+    <h2>Beranda</h2>
+    <p>Selamat datang di dashboard data user.</p>
 </div>
 
 <!-- DATA -->
 <div id="data" class="content">
+
 <div class="grid">
 
 <div class="box">
-    <h2>Tambah Data</h2>
+    <h2>Input Data</h2>
     <input type="text" id="namaInput" placeholder="Masukkan nama">
     <button onclick="tambahData()">Tambah</button>
 </div>
 
 <div class="box">
-    <h3>Table</h3>
+    <h3>Tabel Data</h3>
     <table>
         <thead>
             <tr>
@@ -237,12 +223,12 @@ tr:hover{
 </div>
 
 <div class="box">
-    <h3>List</h3>
+    <h3>Daftar Nama</h3>
     <ul id="list"></ul>
 </div>
 
 <div class="box">
-    <h3>Card</h3>
+    <h3>Kartu User</h3>
     <div id="card"></div>
 </div>
 
@@ -251,13 +237,13 @@ tr:hover{
 
 <!-- ABOUT -->
 <div id="about" class="content box">
-    <h2>About</h2>
-    <p>Aplikasi ini menggunakan konsep:</p>
+    <h2>Tentang</h2>
+    <p>Aplikasi ini memakai konsep:</p>
     <ul>
         <li>DRY</li>
-        <li>Reuse</li>
+        <li>Reusable Code</li>
         <li>Modular</li>
-        <li>Scalable</li>
+        <li>Responsive</li>
     </ul>
 </div>
 
@@ -272,16 +258,21 @@ let users = [
 
 const menus = ["home","data","about"];
 
+/* MENU */
 function renderMenu(data){
     let html = "";
 
     for(let i=0;i<data.length;i++){
-        html += `<li onclick="showPage('${data[i]}')" id="menu-${data[i]}">${data[i]}</li>`;
+        html += `
+        <li onclick="showPage('${data[i]}')" id="menu-${data[i]}">
+            ${data[i].toUpperCase()}
+        </li>`;
     }
 
     document.getElementById("menu").innerHTML = html;
 }
 
+/* PAGE */
 function showPage(page){
     const content = document.getElementsByClassName("content");
 
@@ -298,54 +289,58 @@ function showPage(page){
     document.getElementById("menu-"+page).classList.add("active");
 }
 
+/* RENDER */
 function renderAll(){
-    renderTable(users);
-    renderList(users);
-    renderCard(users);
+    renderTable();
+    renderList();
+    renderCard();
 }
 
-function renderTable(data){
+function renderTable(){
     let html = "";
 
-    for(let i=0;i<data.length;i++){
+    for(let i=0;i<users.length;i++){
         html += `
         <tr>
-            <td>${data[i].id}</td>
-            <td>${data[i].nama}</td>
-            <td><button onclick="hapusData(${data[i].id})">Hapus</button></td>
+            <td>${users[i].id}</td>
+            <td>${users[i].nama}</td>
+            <td>
+                <button onclick="hapusData(${users[i].id})">Hapus</button>
+            </td>
         </tr>`;
     }
 
     document.getElementById("tableBody").innerHTML = html;
 }
 
-function renderList(data){
+function renderList(){
     let html = "";
 
-    for(let i=0;i<data.length;i++){
-        html += `<li>${data[i].nama}</li>`;
+    for(let i=0;i<users.length;i++){
+        html += `<li>${users[i].nama}</li>`;
     }
 
     document.getElementById("list").innerHTML = html;
 }
 
-function renderCard(data){
+function renderCard(){
     let html = "";
 
-    for(let i=0;i<data.length;i++){
+    for(let i=0;i<users.length;i++){
         html += `
         <div class="card-item">
-            <strong>${data[i].nama}</strong>
+            <strong>${users[i].nama}</strong>
             <br><br>
-            <button onclick="hapusData(${data[i].id})">Hapus</button>
+            <button onclick="hapusData(${users[i].id})">Hapus</button>
         </div>`;
     }
 
     document.getElementById("card").innerHTML = html;
 }
 
+/* TAMBAH */
 function tambahData(){
-    const nama = document.getElementById("namaInput").value;
+    const nama = document.getElementById("namaInput").value.trim();
 
     if(nama==""){
         alert("Nama tidak boleh kosong!");
@@ -361,13 +356,15 @@ function tambahData(){
     renderAll();
 }
 
+/* HAPUS */
 function hapusData(id){
-    if(confirm("Yakin hapus data?")){
-        users = users.filter(user => user.id !== id);
+    if(confirm("Yakin ingin menghapus data ini?")){
+        users = users.filter(item => item.id !== id);
         renderAll();
     }
 }
 
+/* INIT */
 renderMenu(menus);
 renderAll();
 showPage("home");
