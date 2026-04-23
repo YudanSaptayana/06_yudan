@@ -3,74 +3,63 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dashboard Data User</title>
+<title>Data Manager App</title>
 
 <style>
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:'Segoe UI',sans-serif;
+    font-family:Arial, sans-serif;
 }
 
 body{
-    background:linear-gradient(135deg,#5f72ff,#9b23ea);
+    background:#eef1f7;
     min-height:100vh;
-    color:#fff;
 }
 
-.container{
-    width:92%;
-    max-width:1200px;
-    margin:auto;
-    padding:25px;
-}
-
-/* Header */
-header{
-    background:rgba(255,255,255,.12);
-    backdrop-filter:blur(14px);
-    padding:25px;
-    border-radius:18px;
-    text-align:center;
-    margin-bottom:22px;
-    box-shadow:0 8px 20px rgba(0,0,0,.15);
-}
-
-header h1{
-    font-size:30px;
-}
-
-header p{
-    margin-top:8px;
-    opacity:.9;
-}
-
-/* Menu */
-#menu{
+/* Layout */
+.wrapper{
     display:flex;
-    gap:12px;
+    min-height:100vh;
+}
+
+/* Sidebar */
+.sidebar{
+    width:240px;
+    background:linear-gradient(180deg,#1e3c72,#2a5298);
+    color:white;
+    padding:25px;
+}
+
+.sidebar h1{
+    font-size:24px;
+    margin-bottom:25px;
+}
+
+#menu{
     list-style:none;
-    margin-bottom:22px;
-    flex-wrap:wrap;
 }
 
 #menu li{
-    padding:12px 20px;
-    border-radius:12px;
+    padding:12px 15px;
+    margin-bottom:10px;
+    border-radius:10px;
     cursor:pointer;
-    background:rgba(255,255,255,.15);
     transition:.3s;
 }
 
 #menu li:hover,
 .active{
-    background:#fff;
-    color:#333;
-    transform:translateY(-3px);
+    background:rgba(255,255,255,.2);
 }
 
 /* Content */
+.main{
+    flex:1;
+    padding:30px;
+}
+
 .content{
     display:none;
 }
@@ -83,7 +72,7 @@ header p{
 @keyframes fade{
     from{
         opacity:0;
-        transform:translateY(12px);
+        transform:translateY(10px);
     }
     to{
         opacity:1;
@@ -91,41 +80,37 @@ header p{
     }
 }
 
-/* Card Box */
+/* Card */
 .box{
-    background:rgba(255,255,255,.12);
-    backdrop-filter:blur(12px);
+    background:white;
     padding:22px;
-    border-radius:18px;
+    border-radius:15px;
+    box-shadow:0 8px 18px rgba(0,0,0,.08);
     margin-bottom:20px;
-    box-shadow:0 10px 20px rgba(0,0,0,.12);
 }
 
 .grid{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
     gap:20px;
 }
 
-/* Input */
+/* Form */
 input{
     width:100%;
     padding:12px;
+    border:1px solid #ddd;
+    border-radius:10px;
     margin:12px 0;
-    border:none;
-    border-radius:12px;
-    outline:none;
 }
 
-/* Button */
 button{
-    padding:10px 16px;
+    padding:10px 15px;
     border:none;
-    border-radius:12px;
+    border-radius:10px;
+    background:#2a5298;
+    color:white;
     cursor:pointer;
-    background:#fff;
-    color:#333;
-    font-weight:bold;
     transition:.3s;
 }
 
@@ -137,44 +122,45 @@ button:hover{
 table{
     width:100%;
     border-collapse:collapse;
-    margin-top:10px;
 }
 
 th,td{
-    padding:12px;
-    border-bottom:1px solid rgba(255,255,255,.2);
+    padding:10px;
+    border-bottom:1px solid #eee;
     text-align:left;
 }
 
 th{
-    color:#ffeaa7;
+    background:#2a5298;
+    color:white;
 }
 
 /* List */
 #list li{
     list-style:none;
-    background:rgba(255,255,255,.08);
-    padding:12px;
+    padding:10px;
     margin:8px 0;
-    border-radius:12px;
+    background:#f8f9fa;
+    border-radius:10px;
 }
 
-/* Card */
+/* Card View */
 .card-item{
-    background:rgba(255,255,255,.08);
     padding:15px;
-    border-radius:14px;
     margin:10px 0;
-    transition:.3s;
+    background:#f8f9fa;
+    border-left:5px solid #2a5298;
+    border-radius:10px;
 }
 
-.card-item:hover{
-    transform:translateY(-4px);
-}
-
+/* Responsive */
 @media(max-width:768px){
-    #menu{
+    .wrapper{
         flex-direction:column;
+    }
+
+    .sidebar{
+        width:100%;
     }
 }
 </style>
@@ -182,19 +168,23 @@ th{
 
 <body>
 
-<div class="container">
+<div class="wrapper">
 
-<header>
-    <h1>Dashboard Data User</h1>
-    <p>Aplikasi Data Sederhana Modern</p>
-</header>
+<!-- Sidebar -->
+<div class="sidebar">
+    <h1>Data App</h1>
+    <ul id="menu"></ul>
+</div>
 
-<ul id="menu"></ul>
+<!-- Main -->
+<div class="main">
 
 <!-- HOME -->
-<div id="home" class="content box">
-    <h2>Beranda</h2>
-    <p>Selamat datang di dashboard data user.</p>
+<div id="home" class="content">
+    <div class="box">
+        <h2>Dashboard</h2>
+        <p>Selamat datang di aplikasi pengelolaan data.</p>
+    </div>
 </div>
 
 <!-- DATA -->
@@ -203,13 +193,13 @@ th{
 <div class="grid">
 
 <div class="box">
-    <h2>Input Data</h2>
+    <h2>Tambah User</h2>
     <input type="text" id="namaInput" placeholder="Masukkan nama">
-    <button onclick="tambahData()">Tambah</button>
+    <button onclick="tambahData()">Simpan</button>
 </div>
 
 <div class="box">
-    <h3>Tabel Data</h3>
+    <h2>Tabel Data</h2>
     <table>
         <thead>
             <tr>
@@ -223,12 +213,12 @@ th{
 </div>
 
 <div class="box">
-    <h3>Daftar Nama</h3>
+    <h2>Daftar Nama</h2>
     <ul id="list"></ul>
 </div>
 
 <div class="box">
-    <h3>Kartu User</h3>
+    <h2>Card User</h2>
     <div id="card"></div>
 </div>
 
@@ -236,17 +226,14 @@ th{
 </div>
 
 <!-- ABOUT -->
-<div id="about" class="content box">
-    <h2>Tentang</h2>
-    <p>Aplikasi ini memakai konsep:</p>
-    <ul>
-        <li>DRY</li>
-        <li>Reusable Code</li>
-        <li>Modular</li>
-        <li>Responsive</li>
-    </ul>
+<div id="about" class="content">
+    <div class="box">
+        <h2>Tentang</h2>
+        <p>Aplikasi ini dibuat dengan konsep sederhana, modular, dan responsive.</p>
+    </div>
 </div>
 
+</div>
 </div>
 
 <script>
@@ -258,26 +245,26 @@ let users = [
 
 const menus = ["home","data","about"];
 
-/* MENU */
-function renderMenu(data){
+/* Menu */
+function renderMenu(){
     let html = "";
 
-    for(let i=0;i<data.length;i++){
+    for(let i=0;i<menus.length;i++){
         html += `
-        <li onclick="showPage('${data[i]}')" id="menu-${data[i]}">
-            ${data[i].toUpperCase()}
+        <li onclick="showPage('${menus[i]}')" id="menu-${menus[i]}">
+            ${menus[i].toUpperCase()}
         </li>`;
     }
 
     document.getElementById("menu").innerHTML = html;
 }
 
-/* PAGE */
+/* Page */
 function showPage(page){
-    const content = document.getElementsByClassName("content");
+    const contents = document.getElementsByClassName("content");
 
-    for(let i=0;i<content.length;i++){
-        content[i].classList.remove("show");
+    for(let i=0;i<contents.length;i++){
+        contents[i].classList.remove("show");
     }
 
     document.getElementById(page).classList.add("show");
@@ -289,7 +276,7 @@ function showPage(page){
     document.getElementById("menu-"+page).classList.add("active");
 }
 
-/* RENDER */
+/* Render */
 function renderAll(){
     renderTable();
     renderList();
@@ -338,12 +325,12 @@ function renderCard(){
     document.getElementById("card").innerHTML = html;
 }
 
-/* TAMBAH */
+/* Tambah */
 function tambahData(){
     const nama = document.getElementById("namaInput").value.trim();
 
     if(nama==""){
-        alert("Nama tidak boleh kosong!");
+        alert("Nama wajib diisi!");
         return;
     }
 
@@ -356,16 +343,16 @@ function tambahData(){
     renderAll();
 }
 
-/* HAPUS */
+/* Hapus */
 function hapusData(id){
-    if(confirm("Yakin ingin menghapus data ini?")){
-        users = users.filter(item => item.id !== id);
+    if(confirm("Hapus data ini?")){
+        users = users.filter(user => user.id !== id);
         renderAll();
     }
 }
 
-/* INIT */
-renderMenu(menus);
+/* Init */
+renderMenu();
 renderAll();
 showPage("home");
 </script>
