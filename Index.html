@@ -14,45 +14,60 @@
 }
 
 body{
-    background:#f4f6f9;
+    background:linear-gradient(135deg,#dfe9f3,#ffffff);
+    min-height:100vh;
     padding:20px;
+    color:#333;
 }
 
 .container{
-    max-width:1000px;
+    max-width:1100px;
     margin:auto;
 }
 
-/* Judul */
+/* Header */
 header{
-    background:#3498db;
+    background:linear-gradient(135deg,#3498db,#6dd5fa);
     color:white;
-    padding:20px;
-    border-radius:10px;
+    padding:25px;
+    border-radius:15px;
     text-align:center;
     margin-bottom:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,.12);
+}
+
+header h1{
+    font-size:32px;
+}
+
+header p{
+    margin-top:8px;
+    opacity:.9;
 }
 
 /* Menu */
 #menu{
     display:flex;
-    gap:10px;
+    gap:12px;
     list-style:none;
     margin-bottom:20px;
+    flex-wrap:wrap;
 }
 
 #menu li{
     background:white;
-    padding:10px 15px;
-    border-radius:8px;
+    padding:12px 18px;
+    border-radius:10px;
     cursor:pointer;
-    box-shadow:0 3px 8px rgba(0,0,0,.08);
+    box-shadow:0 5px 12px rgba(0,0,0,.08);
+    transition:.3s;
 }
 
 #menu li:hover,
 .active{
     background:#3498db;
     color:white;
+    transform:translateY(-3px);
 }
 
 /* Content */
@@ -62,50 +77,69 @@ header{
 
 .show{
     display:block;
+    animation:fade .4s ease;
 }
 
+@keyframes fade{
+    from{
+        opacity:0;
+        transform:translateY(10px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* Box */
 .box{
     background:white;
-    padding:20px;
-    border-radius:10px;
+    padding:22px;
+    border-radius:15px;
     margin-bottom:20px;
-    box-shadow:0 4px 10px rgba(0,0,0,.08);
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
 }
 
 .grid{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
     gap:20px;
 }
 
 /* Form */
 input{
     width:100%;
-    padding:10px;
-    margin:10px 0;
-    border:1px solid #ccc;
-    border-radius:8px;
+    padding:12px;
+    margin:12px 0;
+    border:1px solid #ddd;
+    border-radius:10px;
+    outline:none;
+}
+
+input:focus{
+    border-color:#3498db;
 }
 
 button{
-    padding:8px 12px;
+    padding:10px 15px;
     border:none;
+    border-radius:10px;
     background:#3498db;
     color:white;
-    border-radius:8px;
     cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    background:#2980b9;
+    transform:scale(1.05);
 }
 
 /* Table */
 table{
     width:100%;
     border-collapse:collapse;
-}
-
-th,td{
-    padding:10px;
-    border-bottom:1px solid #ddd;
-    text-align:left;
+    margin-top:10px;
 }
 
 th{
@@ -113,20 +147,58 @@ th{
     color:white;
 }
 
+th,td{
+    padding:12px;
+    border-bottom:1px solid #eee;
+    text-align:left;
+}
+
+tr:hover{
+    background:#f8f9fa;
+}
+
 /* List */
 #list li{
+    list-style:none;
     background:#f8f9fa;
-    padding:10px;
+    padding:12px;
     margin:8px 0;
-    border-radius:8px;
+    border-radius:10px;
+    transition:.3s;
+}
+
+#list li:hover{
+    transform:translateX(5px);
 }
 
 /* Card */
 .card-item{
-    background:#f8f9fa;
+    background:linear-gradient(135deg,#ffffff,#f1f7ff);
     padding:15px;
-    border-radius:8px;
+    border-radius:12px;
     margin:10px 0;
+    box-shadow:0 5px 10px rgba(0,0,0,.05);
+    transition:.3s;
+}
+
+.card-item:hover{
+    transform:translateY(-4px);
+}
+
+/* About */
+.about-list li{
+    margin:8px 0;
+}
+
+/* Responsive */
+@media(max-width:768px){
+    #menu{
+        flex-direction:column;
+    }
+
+    header h1{
+        font-size:24px;
+    }
 }
 </style>
 </head>
@@ -137,6 +209,7 @@ th{
 
 <header>
     <h1>Aplikasi Render Data</h1>
+    <p>Tampilan Modern & Lebih Menarik</p>
 </header>
 
 <ul id="menu"></ul>
@@ -189,7 +262,7 @@ th{
 <div id="about" class="content box">
     <h2>About</h2>
     <p>Aplikasi ini menggunakan konsep:</p>
-    <ul>
+    <ul class="about-list">
         <li>DRY</li>
         <li>Reuse</li>
         <li>Modular</li>
@@ -208,22 +281,20 @@ let users = [
 
 const menus = ["home","data","about"];
 
-/* MENU */
 function renderMenu(data){
     let html = "";
 
     for(let i=0;i<data.length;i++){
         html += `
-            <li onclick="showPage('${data[i]}')" id="menu-${data[i]}">
-                ${data[i]}
-            </li>
+        <li onclick="showPage('${data[i]}')" id="menu-${data[i]}">
+            ${data[i]}
+        </li>
         `;
     }
 
     document.getElementById("menu").innerHTML = html;
 }
 
-/* PAGE */
 function showPage(page){
     const contents = document.getElementsByClassName("content");
 
@@ -240,7 +311,6 @@ function showPage(page){
     document.getElementById("menu-"+page).classList.add("active");
 }
 
-/* RENDER */
 function renderAll(){
     renderTable(users);
     renderList(users);
@@ -256,9 +326,7 @@ function renderTable(data){
             <td>${data[i].id}</td>
             <td>${data[i].nama}</td>
             <td>
-                <button onclick="hapusData(${data[i].id})">
-                    Hapus
-                </button>
+                <button onclick="hapusData(${data[i].id})">Hapus</button>
             </td>
         </tr>
         `;
@@ -283,11 +351,9 @@ function renderCard(data){
     for(let i=0;i<data.length;i++){
         html += `
         <div class="card-item">
-            ${data[i].nama}
+            <strong>${data[i].nama}</strong>
             <br><br>
-            <button onclick="hapusData(${data[i].id})">
-                Hapus
-            </button>
+            <button onclick="hapusData(${data[i].id})">Hapus</button>
         </div>
         `;
     }
@@ -295,7 +361,6 @@ function renderCard(data){
     document.getElementById("card").innerHTML = html;
 }
 
-/* TAMBAH */
 function tambahData(){
     const nama = document.getElementById("namaInput").value;
 
@@ -313,7 +378,6 @@ function tambahData(){
     renderAll();
 }
 
-/* HAPUS */
 function hapusData(id){
     if(confirm("Yakin hapus data?")){
         users = users.filter(user => user.id !== id);
@@ -321,7 +385,6 @@ function hapusData(id){
     }
 }
 
-/* INIT */
 renderMenu(menus);
 renderAll();
 showPage("home");
