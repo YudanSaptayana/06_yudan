@@ -14,30 +14,23 @@
 }
 
 body{
-    background:linear-gradient(135deg,#eef2f3,#dfe9f3);
-    min-height:100vh;
-    color:#333;
-}
-
-.wrapper{
-    width:90%;
-    margin:auto;
+    background:#f4f6f9;
     padding:20px;
 }
 
-/* Header */
-header{
-    background:linear-gradient(135deg,#4facfe,#00f2fe);
-    color:white;
-    text-align:center;
-    padding:25px;
-    border-radius:15px;
-    box-shadow:0 8px 20px rgba(0,0,0,.1);
-    margin-bottom:20px;
+.container{
+    max-width:1000px;
+    margin:auto;
 }
 
-header h1{
-    font-size:30px;
+/* Judul */
+header{
+    background:#3498db;
+    color:white;
+    padding:20px;
+    border-radius:10px;
+    text-align:center;
+    margin-bottom:20px;
 }
 
 /* Menu */
@@ -46,23 +39,20 @@ header h1{
     gap:10px;
     list-style:none;
     margin-bottom:20px;
-    flex-wrap:wrap;
 }
 
 #menu li{
-    padding:12px 18px;
     background:white;
-    border-radius:10px;
+    padding:10px 15px;
+    border-radius:8px;
     cursor:pointer;
-    transition:.3s;
-    box-shadow:0 4px 10px rgba(0,0,0,.08);
+    box-shadow:0 3px 8px rgba(0,0,0,.08);
 }
 
 #menu li:hover,
 .active{
-    background:#4facfe;
+    background:#3498db;
     color:white;
-    transform:translateY(-3px);
 }
 
 /* Content */
@@ -72,26 +62,14 @@ header h1{
 
 .show{
     display:block;
-    animation:fade .4s;
-}
-
-@keyframes fade{
-    from{
-        opacity:0;
-        transform:translateY(10px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
 }
 
 .box{
     background:white;
     padding:20px;
-    border-radius:15px;
-    box-shadow:0 8px 18px rgba(0,0,0,.08);
+    border-radius:10px;
     margin-bottom:20px;
+    box-shadow:0 4px 10px rgba(0,0,0,.08);
 }
 
 .grid{
@@ -103,93 +81,62 @@ header h1{
 /* Form */
 input{
     width:100%;
-    padding:12px;
-    border:1px solid #ddd;
-    border-radius:10px;
-    margin:12px 0;
+    padding:10px;
+    margin:10px 0;
+    border:1px solid #ccc;
+    border-radius:8px;
 }
 
 button{
-    padding:10px 15px;
+    padding:8px 12px;
     border:none;
-    border-radius:10px;
-    background:#4facfe;
+    background:#3498db;
     color:white;
+    border-radius:8px;
     cursor:pointer;
-    transition:.3s;
-}
-
-button:hover{
-    transform:scale(1.05);
-    background:#2196f3;
 }
 
 /* Table */
 table{
     width:100%;
     border-collapse:collapse;
-    margin-top:10px;
-}
-
-th{
-    background:#4facfe;
-    color:white;
 }
 
 th,td{
     padding:10px;
-    border-bottom:1px solid #eee;
+    border-bottom:1px solid #ddd;
     text-align:left;
 }
 
-tr:hover{
-    background:#f8f9fa;
+th{
+    background:#3498db;
+    color:white;
 }
 
 /* List */
 #list li{
-    list-style:none;
     background:#f8f9fa;
-    padding:12px;
+    padding:10px;
     margin:8px 0;
-    border-radius:10px;
-    transition:.3s;
-}
-
-#list li:hover{
-    transform:translateX(5px);
+    border-radius:8px;
 }
 
 /* Card */
 .card-item{
-    background:linear-gradient(135deg,#f8f9fa,#ffffff);
+    background:#f8f9fa;
     padding:15px;
-    border-radius:12px;
+    border-radius:8px;
     margin:10px 0;
-    box-shadow:0 5px 10px rgba(0,0,0,.05);
-    transition:.3s;
-}
-
-.card-item:hover{
-    transform:translateY(-4px);
-}
-
-/* Responsive */
-@media(max-width:768px){
-    #menu{
-        flex-direction:column;
-    }
 }
 </style>
 </head>
 
 <body>
 
-<div class="wrapper">
+<div class="container">
 
 <header>
     <h1>Aplikasi Render Data</h1>
-    <p>Dashboard Data Sederhana & Modern</p>
 </header>
 
 <ul id="menu"></ul>
@@ -262,13 +209,13 @@ let users = [
 const menus = ["home","data","about"];
 
 /* MENU */
-function renderMenu(){
+function renderMenu(data){
     let html = "";
 
-    for(let i=0;i<menus.length;i++){
+    for(let i=0;i<data.length;i++){
         html += `
-            <li onclick="showPage('${menus[i]}')" id="menu-${menus[i]}">
-                ${menus[i]}
+            <li onclick="showPage('${data[i]}')" id="menu-${data[i]}">
+                ${data[i]}
             </li>
         `;
     }
@@ -278,10 +225,10 @@ function renderMenu(){
 
 /* PAGE */
 function showPage(page){
-    const content = document.getElementsByClassName("content");
+    const contents = document.getElementsByClassName("content");
 
-    for(let i=0;i<content.length;i++){
-        content[i].classList.remove("show");
+    for(let i=0;i<contents.length;i++){
+        contents[i].classList.remove("show");
     }
 
     document.getElementById(page).classList.add("show");
@@ -295,21 +242,23 @@ function showPage(page){
 
 /* RENDER */
 function renderAll(){
-    renderTable();
-    renderList();
-    renderCard();
+    renderTable(users);
+    renderList(users);
+    renderCard(users);
 }
 
-function renderTable(){
+function renderTable(data){
     let html = "";
 
-    for(let i=0;i<users.length;i++){
+    for(let i=0;i<data.length;i++){
         html += `
         <tr>
-            <td>${users[i].id}</td>
-            <td>${users[i].nama}</td>
+            <td>${data[i].id}</td>
+            <td>${data[i].nama}</td>
             <td>
-                <button onclick="hapusData(${users[i].id})">Hapus</button>
+                <button onclick="hapusData(${data[i].id})">
+                    Hapus
+                </button>
             </td>
         </tr>
         `;
@@ -318,25 +267,27 @@ function renderTable(){
     document.getElementById("tableBody").innerHTML = html;
 }
 
-function renderList(){
+function renderList(data){
     let html = "";
 
-    for(let i=0;i<users.length;i++){
-        html += `<li>${users[i].nama}</li>`;
+    for(let i=0;i<data.length;i++){
+        html += `<li>${data[i].nama}</li>`;
     }
 
     document.getElementById("list").innerHTML = html;
 }
 
-function renderCard(){
+function renderCard(data){
     let html = "";
 
-    for(let i=0;i<users.length;i++){
+    for(let i=0;i<data.length;i++){
         html += `
         <div class="card-item">
-            <strong>${users[i].nama}</strong>
+            ${data[i].nama}
             <br><br>
-            <button onclick="hapusData(${users[i].id})">Hapus</button>
+            <button onclick="hapusData(${data[i].id})">
+                Hapus
+            </button>
         </div>
         `;
     }
@@ -371,7 +322,7 @@ function hapusData(id){
 }
 
 /* INIT */
-renderMenu();
+renderMenu(menus);
 renderAll();
 showPage("home");
 </script>
