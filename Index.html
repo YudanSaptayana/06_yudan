@@ -1,1 +1,70 @@
-restu bot ai
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Manager</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Consolas,monospace}
+body{min-height:100vh;display:flex;background:radial-gradient(circle at top,#062b06,#010401 65%);color:#8cffc1;overflow-x:hidden}
+body:before{content:'';position:fixed;inset:0;background:linear-gradient(rgba(0,255,120,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,120,.05) 1px,transparent 1px);background-size:28px 28px;pointer-events:none}
+.sidebar{width:250px;background:rgba(0,20,0,.88);border-right:1px solid #00ff88;padding:26px;box-shadow:0 0 20px rgba(0,255,136,.35)}
+.sidebar h1{font-size:24px;letter-spacing:2px;text-shadow:0 0 12px #00ff88;margin-bottom:22px}
+.sidebar button{width:100%;padding:12px;margin:8px 0;border-radius:12px;border:1px solid #0f5;background:#041104;color:#8cffc1;cursor:pointer;transition:.25s}
+.sidebar button:hover,.active{transform:translateX(4px);background:#00ff88;color:#021002;box-shadow:0 0 16px #00ff88}
+.main{flex:1;padding:34px}
+.page{display:none}.show{display:block;animation:fade .45s ease}
+@keyframes fade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:22px}
+.card{background:rgba(0,18,0,.8);border:1px solid rgba(0,255,136,.55);border-radius:18px;padding:22px;box-shadow:0 10px 30px rgba(0,0,0,.35),0 0 14px rgba(0,255,136,.18);backdrop-filter:blur(8px)}
+.card h2,.card h3{margin-bottom:12px;color:#d8ffe9}
+input{width:100%;padding:12px 14px;border-radius:12px;border:1px solid #00ff88;background:#000;color:#8cffc1;outline:none;margin:12px 0;transition:.2s}
+input:focus{box-shadow:0 0 12px rgba(0,255,136,.4)}
+.action-btn,.delete-btn{padding:10px 14px;border:none;border-radius:10px;font-weight:700;cursor:pointer;transition:.2s}
+.action-btn{background:linear-gradient(90deg,#00ff88,#7dffb4);color:#021002}
+.delete-btn{background:linear-gradient(90deg,#ff3b3b,#ff6b6b);color:#fff}
+.action-btn:hover,.delete-btn:hover{transform:translateY(-2px)}
+table{width:100%;border-collapse:collapse;border-radius:10px;overflow:hidden}
+th,td{padding:10px;border-bottom:1px solid rgba(0,255,136,.25);text-align:left}
+th{color:#d8ffe9}
+.list-item,.user-card{padding:12px;margin:10px 0;background:rgba(0,0,0,.35);border:1px solid rgba(0,255,136,.4);border-radius:12px}
+.user-card b{font-size:16px}
+@media(max-width:760px){body{flex-direction:column}.sidebar{width:100%;border-right:none;border-bottom:1px solid #00ff88}.main{padding:18px}}
+</style>
+</head>
+<body>
+<div class='sidebar'>
+<h1>Dashboard</h1>
+<div id='nav'></div>
+</div>
+<div class='main'>
+<section id='home' class='page'>
+<div class='card'><h2>Home</h2><p>Selamat datang di aplikasi pengelola data modern.</p></div>
+</section>
+<section id='data' class='page'>
+<div class='grid'>
+<div class='card'><h3>Tambah Data</h3><input id='nameInput' placeholder='Masukkan nama'><button class='action' onclick='addUser()'>Tambah</button></div>
+<div class='card'><h3>Tabel Data</h3><table><thead><tr><th>ID</th><th>Nama</th><th>Aksi</th></tr></thead><tbody id='tableWrap'></tbody></table></div>
+<div class='card'><h3>List Nama</h3><div id='listWrap'></div></div>
+<div class='card'><h3>Card View</h3><div id='cardWrap'></div></div>
+</div>
+</section>
+<section id='about' class='page'>
+<div class='card'><h2>About</h2><p>Aplikasi dibuat dengan konsep reusable component, clean UI, dan modular JavaScript.</p></div>
+</section>
+</div>
+<script>
+let members=[{id:101,name:'Rani'},{id:102,name:'Budi'},{id:103,name:'Lina'}];
+const pages=['home','data','about'];
+function initNav(){document.getElementById('nav').innerHTML=pages.map(p=>`<button id='btn-${p}' onclick="openPage('${p}')">${p.toUpperCase()}</button>`).join('');}
+function openPage(id){document.querySelectorAll('.page').forEach(x=>x.classList.remove('show'));document.getElementById(id).classList.add('show');pages.forEach(p=>document.getElementById('btn-'+p).classList.remove('active'));document.getElementById('btn-'+id).classList.add('active');}
+function refresh(){drawTable();drawList();drawCards();}
+function drawTable(){document.getElementById('tableWrap').innerHTML=members.map(u=>`<tr><td>${u.id}</td><td>${u.name}</td><td><button class='delete' onclick='removeUser(${u.id})'>Hapus</button></td></tr>`).join('');}
+function drawList(){document.getElementById('listWrap').innerHTML=members.map(u=>`<div class='list-item'>${u.name}</div>`).join('');}
+function drawCards(){document.getElementById('cardWrap').innerHTML=members.map(u=>`<div class='mini-card'><b>${u.name}</b><br><button class='delete' onclick='removeUser(${u.id})'>Delete</button></div>`).join('');}
+function addUser(){const val=document.getElementById('nameInput').value.trim();if(!val)return alert('Nama wajib diisi');members.push({id:Date.now(),name:val});document.getElementById('nameInput').value='';refresh();}
+function removeUser(id){if(confirm('Hapus data ini?')){members=members.filter(x=>x.id!==id);refresh();}}
+initNav();refresh();openPage('home');
+</script>
+</body>
+</html>
